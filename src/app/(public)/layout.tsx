@@ -2,6 +2,7 @@ import { getSiteConfig } from "@/lib/data";
 import { isOpenAdminDemo } from "@/lib/auth";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ChatWidget } from "@/components/site/ChatWidget";
 import { DemoDisclaimer } from "@/components/site/DemoDisclaimer";
 import { JsonLd } from "@/components/JsonLd";
 import { localBusinessJsonLd } from "@/lib/seo/structured-data";
@@ -22,6 +23,7 @@ export default async function PublicLayout({ children }: { children: React.React
       />
       <main id="main">{children}</main>
       <Footer config={config} />
+      <ChatWidget businessName={config.business.name} />
     </>
   );
 }
