@@ -284,7 +284,7 @@ export default async function HomePage() {
               .
             </p>
             <ul className="mt-6 space-y-3 text-sm">
-              {["Free, written estimates", "Straight answers — repair or replace", "Licensed & insured crew"].map((x) => (
+              {["Free, written estimates", "Straight answers — repair or replace", "One crew, start to finish"].map((x) => (
                 <li key={x} className="flex items-center gap-2">
                   <ServiceIcon name="check" className="h-5 w-5 text-brand-accent" /> {x}
                 </li>

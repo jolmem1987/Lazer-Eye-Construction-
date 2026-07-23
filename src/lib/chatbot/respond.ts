@@ -62,7 +62,7 @@ export function respond(input: RespondInput): ChatResponse {
       const list = (config.serviceNames ?? []).slice(0, 8);
       const listText = list.length ? `\n\n${list.map((n) => `• ${n}`).join("\n")}` : "";
       return build({
-        text: `We're a full-service general contractor — decks and pergolas, doors and windows, roofing, siding, and interior remodels.${listText}\n\nWhat project did you have in mind?`,
+        text: `We're a full-service general contractor — decks and pergolas, doors and windows, roofing, siding, flooring, cabinets and countertops, and full remodels.${listText}\n\nWhat project did you have in mind?`,
         products: [],
         suggestions: baseSuggestions,
         intent,

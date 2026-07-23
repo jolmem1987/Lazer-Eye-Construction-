@@ -26,6 +26,8 @@ const PATHS: Record<string, string> = {
   hammer: "M14 6l4 4M12.5 7.5l-8.5 8.5 3 3 8.5-8.5M16 3l5 5-2.5 2.5-5-5z",
   fence: "M4 10l2-3 2 3v9H4zM12 10l2-3 2 3v9h-4M4 14h16M4 18h16",
   tree: "M12 3l5 7h-3l4 6H6l4-6H7l5-7zM12 16v5",
+  floor: "M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18",
+  cabinet: "M4 3h16v18H4zM4 12h16M9.5 7v2M9.5 15v2M14.5 7v2M14.5 15v2",
 };
 
 export function ServiceIcon({ name, ...props }: { name: string } & SVGProps<SVGSVGElement>) {

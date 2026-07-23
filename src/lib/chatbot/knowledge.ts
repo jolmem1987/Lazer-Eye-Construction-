@@ -81,7 +81,7 @@ export function buildChatIndex(site: WebsiteConfig): SiteIndex {
     url: "/",
     title: b.name,
     kind: "page",
-    text: `${b.name}. ${b.tagline}. ${b.primaryService}. ${b.yearsExperience}+ years experience, founded ${b.foundedYear}. Licensed and insured general contractor in ${b.city}, ${b.state}. ${site.hero.headline}. ${site.hero.subheadline}`,
+    text: `${b.name}. ${b.tagline}. ${b.primaryService}. ${b.yearsExperience}+ years experience, founded ${b.foundedYear}. General contractor in ${b.city}, ${b.state}. ${site.hero.headline}. ${site.hero.subheadline}`,
   });
 
   // Services → both searchable chunks and service cards.

@@ -44,7 +44,7 @@ const RULES: Rule[] = [
   {
     intent: "services",
     patterns: [
-      /\b(service|services|do you (do|build|install|offer|handle)|can you|deck|porch|pergola|patio|window|windows|door|doors|roof|roofing|gutter|sid(e|ing)|kitchen|bath(room)?|remodel|renovat|addition|fence|exterior)\b/i,
+      /\b(service|services|do you (do|build|install|offer|handle)|can you|deck|porch|pergola|patio|window|windows|door|doors|roof|roofing|gutter|sid(e|ing)|kitchen|bath(room)?|remodel|renovat|addition|fence|exterior|floor|floors|flooring|hardwood|tile|vinyl|cabinet|cabinets|countertop|counters?)\b/i,
     ],
   },
   {
