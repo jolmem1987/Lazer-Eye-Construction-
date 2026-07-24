@@ -50,6 +50,46 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
   return bcrypt.compare(password, hash);
 }
 
+/**
+ * Changes the signed-in admin's own password after verifying the current one.
+ * On success it revokes every existing session and issues a fresh one for this
+ * browser, so any other logged-in devices are signed out.
+ */
+export async function changeOwnPassword(
+  currentPassword: string,
+  newPassword: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const db = getDb();
+  if (!db) return { ok: false, error: "Authentication is unavailable until a database is connected." };
+
+  const sessionUser = await getSessionUser();
+  if (!sessionUser) return { ok: false, error: "Your session has expired. Please log in again." };
+
+  const rows = await db
+    .select({ passwordHash: schema.adminUsers.passwordHash })
+    .from(schema.adminUsers)
+    .where(eq(schema.adminUsers.id, sessionUser.id))
+    .limit(1);
+  const user = rows[0];
+  if (!user) return { ok: false, error: "Account not found." };
+
+  const valid = await verifyPassword(currentPassword, user.passwordHash);
+  if (!valid) return { ok: false, error: "Your current password is incorrect." };
+
+  const passwordHash = await hashPassword(newPassword);
+  await db
+    .update(schema.adminUsers)
+    .set({ passwordHash, updatedAt: new Date() })
+    .where(eq(schema.adminUsers.id, sessionUser.id));
+
+  // Security: revoke all sessions for this user, then re-issue one for the
+  // current browser so the owner stays signed in here but other devices don't.
+  await db.delete(schema.sessions).where(eq(schema.sessions.userId, sessionUser.id));
+  await createSessionForUser(sessionUser.id);
+
+  return { ok: true };
+}
+
 /** Validates email + password and, on success, creates a session cookie. */
 export async function login(
   email: string,

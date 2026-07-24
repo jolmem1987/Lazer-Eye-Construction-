@@ -1,5 +1,6 @@
 import { getSiteConfig } from "@/lib/data";
 import {
+  changePasswordAction,
   saveBusinessAction,
   saveCategoryAction,
   saveHoursAction,
@@ -130,6 +131,53 @@ export default async function SettingsPage() {
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" name="isDemo" defaultChecked={config.isDemo} /> Show the demonstration disclaimer
             </label>
+          </SaveForm>
+        </Card>
+
+        {/* Change password */}
+        <Card>
+          <h2 className="font-heading text-lg font-bold">Change password</h2>
+          <p className="mb-4 text-sm text-black/55">
+            Update the password you use to sign in here. You&apos;ll stay signed in on this device; any
+            other signed-in devices will be logged out.
+          </p>
+          <SaveForm action={changePasswordAction} submitLabel="Update password" className="grid gap-3 sm:max-w-sm">
+            <div>
+              <label htmlFor="currentPassword" className="field-label">Current password</label>
+              <input
+                id="currentPassword"
+                name="currentPassword"
+                type="password"
+                autoComplete="current-password"
+                required
+                className="field-input"
+              />
+            </div>
+            <div>
+              <label htmlFor="newPassword" className="field-label">New password</label>
+              <input
+                id="newPassword"
+                name="newPassword"
+                type="password"
+                autoComplete="new-password"
+                minLength={10}
+                required
+                className="field-input"
+              />
+              <p className="field-hint">At least 10 characters. Use something only you would know.</p>
+            </div>
+            <div>
+              <label htmlFor="confirmPassword" className="field-label">Confirm new password</label>
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                autoComplete="new-password"
+                minLength={10}
+                required
+                className="field-input"
+              />
+            </div>
           </SaveForm>
         </Card>
       </div>

@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { getSessionUser, isOpenAdminDemo, login, logout } from "../auth";
+import { changeOwnPassword, getSessionUser, isOpenAdminDemo, login, logout } from "../auth";
 import { loginSchema, businessInfoSchema, hexColor } from "../validation";
 import { rateLimit } from "../rate-limit";
 import { getSiteConfig } from "../data";
@@ -96,6 +96,24 @@ export async function loginAction(_prev: ActionResult, fd: FormData): Promise<Ac
 export async function logoutAction() {
   await logout();
   redirect("/admin/login");
+}
+
+export async function changePasswordAction(_prev: ActionResult, fd: FormData): Promise<ActionResult> {
+  const g = await guard();
+  if (g) return g;
+
+  const current = String(fd.get("currentPassword") ?? "");
+  const next = String(fd.get("newPassword") ?? "");
+  const confirm = String(fd.get("confirmPassword") ?? "");
+
+  if (!current) return { ok: false, message: "Enter your current password." };
+  if (next.length < 10) return { ok: false, message: "Your new password must be at least 10 characters." };
+  if (next !== confirm) return { ok: false, message: "The new password and confirmation don't match." };
+  if (next === current) return { ok: false, message: "Your new password must be different from your current one." };
+
+  const result = await changeOwnPassword(current, next);
+  if (!result.ok) return { ok: false, message: result.error };
+  return { ok: true, message: "Password updated. Any other signed-in devices have been logged out." };
 }
 
 /* ============================ settings ============================ */
