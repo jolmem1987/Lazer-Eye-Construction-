@@ -34,11 +34,13 @@ export function Footer({ config }: { config: SiteConfig }) {
                 {b.phone}
               </a>
             </li>
-            <li>
-              <a href={`mailto:${b.email}`} className="hover:text-white">
-                {b.email}
-              </a>
-            </li>
+            {b.email && (
+              <li>
+                <a href={`mailto:${b.email}`} className="hover:text-white">
+                  {b.email}
+                </a>
+              </li>
+            )}
             {b.showAddress && b.addressLine && (
               <li>
                 {b.addressLine}, {b.city}, {b.state} {b.zip}

@@ -164,7 +164,7 @@ export function buildChatIndex(site: WebsiteConfig): SiteIndex {
     contactHref: telHref(b.phone),
     estimateHref: "/#estimate",
     phone: b.phone,
-    email: b.email,
+    email: b.email || undefined,
     serviceAreaText: `${sa.primaryCity}, plus ${sa.nearbyCities.join(", ")} across ${sa.counties.join(", ")}.`,
     hoursText,
     serviceNames: site.services.filter((s) => s.active).map((s) => s.name),

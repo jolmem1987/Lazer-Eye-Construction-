@@ -61,7 +61,7 @@ export function localBusinessJsonLd(config: SiteConfig): Record<string, unknown>
     legalName: b.legalName || undefined,
     url,
     telephone: b.phone,
-    email: b.email,
+    email: b.email || undefined,
     description: config.seo.defaultDescription,
     image: absoluteUrl(config, config.hero.imageUrl),
     priceRange: "$$",

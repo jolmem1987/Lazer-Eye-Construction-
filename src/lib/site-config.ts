@@ -27,12 +27,14 @@ export const defaultSiteConfig: SiteConfig = {
     legalName: "Lazer Eye Construction LLC",
     tagline: "One trusted contractor for every project — done right the first time.",
     phone: "(706) 669-1869",
-    email: "estimates@lazereyeconstruction.example.com",
-    addressLine: "1420 Birch Street",
+    // Public email intentionally hidden — visitors use phone or the estimate
+    // form; lead notifications go to LEAD_NOTIFICATION_EMAIL (see .env.local).
+    email: "",
+    addressLine: "",
     city: "Alpharetta",
     state: "GA",
     zip: "30009",
-    showAddress: true,
+    showAddress: false,
     licenseInfo: "General contractor serving the greater Alpharetta, GA area",
     yearsExperience: 20,
     foundedYear: 2026,
