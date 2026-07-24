@@ -86,9 +86,9 @@ export const defaultSiteConfig: SiteConfig = {
   hero: {
     headline: "Decks, Additions, Windows & More — Your All-in-One Contractor in Alpharetta, GA",
     subheadline:
-      "Locally owned and owner-operated. From custom decks and pergolas to doors, windows, siding, " +
-      "and roofing — plus flooring, cabinets, countertops, and full remodels, we do it all with one " +
-      "accountable crew, plain-language answers, and work backed by a written warranty.",
+      "Locally owned and owner-operated in Alpharetta. From decks and pergolas to windows, roofing, " +
+      "flooring, cabinets, and full remodels, you get one contractor for the whole job — straight " +
+      "answers, careful work, and a written warranty.",
     primaryCtaLabel: "Get a Free Estimate",
     secondaryCtaLabel: "Call Now",
     imageUrl: "/demo/hero-roof.svg",
